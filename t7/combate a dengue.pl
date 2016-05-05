@@ -32,7 +32,7 @@ visitas(K):-K = [_,_,_,_,_,_,_],
 	regra5(K).
 
 
-/* Quest˜ao 2. Se em um trecho do percurso visitarmos
+/* Questao 2. Se em um trecho do percurso visitarmos
 as casas T, L e F, exatamente nesta ordem, qual a
 posic˜ao que G foi visitada?
 (A) Segunda.
@@ -50,7 +50,7 @@ posic˜ao que G foi visitada?
 
 
 /*
-Quest˜ao 1. Qual das seguintes op¸c˜oes ´e uma lista
+Questao 1. Qual das seguintes op¸c˜oes ´e uma lista
 completa e correta da ordem que as sete casas devem
 ser visitadas?
 (A) F, T, H, L, P, G e M.
@@ -67,7 +67,7 @@ ser visitadas?
 */
 
 /*
-Quest˜ao 3. Se a casa H ´e a primeira a ser visitada,
+Questao 3. Se a casa H ´e a primeira a ser visitada,
 qual a quarta casa a ser visitada?
 (A) F.
 (B) G.

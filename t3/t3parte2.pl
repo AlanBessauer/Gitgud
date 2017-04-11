@@ -29,7 +29,7 @@ repete5(E,L):- L=[E,E,E,E,E].
 sumQuads([],S):- S == 0.
 sumQuads(L,S):- L=[X|T], V is S - X**2, sumQuads(T,V).
 
-Defina um predicado recursivo mapop(L1,L2) que seja verdadeiro se a lista L2 for formada aplicando-se a operação 2*x+1 a cada elemento x da lista L1.
+%Defina um predicado recursivo mapop(L1,L2) que seja verdadeiro se a lista L2 for formada aplicando-se a operação 2*x+1 a cada elemento x da lista L1.
 mapop([],[]).
 mapop(L1,L2):-  L1=[X|T], L2=[N|Z], N is (X*2)+1, mapop(T,Z).
 

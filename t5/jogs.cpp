@@ -10,8 +10,9 @@ class active{
  private:
    std::string nome;
    std::string modalidade;
-   int pontos;
  public:
+    bool added { false };
+    int pontos;	
     active(std::string nome, std::string modalidade, int pontos){
 	this->nome = nome;
 	this->modalidade = modalidade;
@@ -31,27 +32,21 @@ class active{
 class total{
    private:
    std::string nome;
-   std::string modalidade;
+   int soma;
  public:
-    bool added { false };
-    int pontos;	
-    total(std::string nome, std::string modalidade, int pontos){
+    total(std::string nome, int soma){
 	this->nome = nome;
-	this->modalidade = modalidade;
-	this->pontos = pontos;	
+	this->soma = soma;	
 }
 	std::string pnome(){
 		return nome;
 }
-	std::string pmod(){
-		return modalidade;
-}
 	int ponts(){
-		return pontos;
+		return soma;
 	}
 		
 bool operator<(total& j){
-		return this->pontos < j.pontos;
+		return this->soma < j.soma;
 	}
 
 };
@@ -61,7 +56,6 @@ bool cmpranomes(total a, total b) {
 }
 int main() {
 
-   int x;
    std::ifstream jogos("jogos.csv");
    
    std::string line;
@@ -75,7 +69,6 @@ int main() {
       std::getline(linestream, cell[1], ',');
       std::getline(linestream, cell[2], ',');
       v.push_back(active(cell[0], cell[1], std::stoi(cell[2])));
-      z.push_back(total(cell[0], cell[1], std::stoi(cell[2])));
    }
 
    std::cout<<"pontuacoes em pingpong:"<<std::endl;
@@ -98,27 +91,35 @@ int main() {
    std::cout << std::endl;
 	}
 }
-   std::sort(z.begin(), z.end(), cmpranomes);
-   std::vector<total>::iterator iz;
-   std::vector<total>::iterator iv;
-   for (iz = z.begin(); iz != z.end(); iz++){	
-	for(iv = iz+1; iv != z.end(); iv++){
+   std::vector<active>::iterator iz;
+   std::vector<active>::iterator iv;
+   for (iz = v.begin(); iz != v.end(); iz++){	
+	for(iv = iz+1; iv != v.end(); iv++){
 		if( iz->added == false){
 			if (iz->pnome() == iv->pnome()){
 				iz->pontos = (iz->pontos + iv->pontos);
+				z.push_back(total(iz->pnome(), iz->pontos));
 				iz->added = true;
+				}	
 			}
 		}
 	}
-}
-	
-   std::cout<<"pontuacoes por alfabeto"<<std::endl;
+   std::sort(z.begin(), z.end(), cmpranomes);
+   std::cout<<"pontuacoes por alfabeto:"<<std::endl;
    std::vector<total>::iterator ix;
    for (ix = z.begin(); ix <= z.end(); ix++){
    std::cout<< ix->pnome() << " ";
    std::cout << std::endl;
    std::cout<< ix->ponts();
    std::cout << std::endl;
-   ix++;
+	}
+   std::sort(z.begin(), z.end());
+   std::cout<<"resultados finais em ordem decrescente:"<<std::endl;
+   std::vector<total>::iterator il;
+   for (il = z.begin(); il <= z.end(); il++){
+   std::cout<< il->pnome() << " ";
+   std::cout << std::endl;
+   std::cout<< il->ponts();
+   std::cout << std::endl;
 	}
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <stdlib.h>
 
 class Biscoito{
 private:
@@ -12,14 +13,17 @@ public:
   float setpreco(float x){
     preco = x;
   }
+  float getarea(){
+
+  }
 };
 
 class quadrado : public Biscoito {
   private:
     float lado;
   public:
-    quadrado(float z){
-        lado = x;  
+    quadrado(float x){
+        lado = x;
     }
     float getarea(){
       return lado*lado;
@@ -32,10 +36,10 @@ class circular : public Biscoito {
   public:
     circular(float r){
         raio = r;
-        
+
     }
     float getarea(){
-      return 3,14 * (r * r);
+      return 3,14 * (raio * raio);
     }
 };
 
@@ -54,18 +58,39 @@ class triangular : public Biscoito {
 };
 
 float alocapreco(Biscoito &b){
-  if( 5 < b->getarea() < 10){
-    setpreco(0,50);
+  if( 5 < b.getarea() < 10){
+    b.setpreco(0.50);
   }
-  if( 3 < b->getarea() < 5){
-    setpreco(0,35);
+  if( 3 < b.getarea() < 5){
+    b.setpreco(0.35);
   }
-  if( 1 < b->getarea() < 3){
-    setpreco (0,20);
+  if( 1 < b.getarea() < 3){
+    b.setpreco (0.20);
   }
 }
 
 int main(){
-  triangular t(10, 20);
+  int x, y, z, n;
+  float m;
+  quadrado q;
   std::cout << "" << t.getarea() << std::endl;
+  std::vector<Biscoito*> biscs;
+  std::vector<Biscoito*>::iterator i;
+  for (i = biscs.begin(); i != 500; i++){
+    srand (time(NULL));
+      m = rand() % 10;
+      n = rand() % 225;
+      if(151 <= n <= 225){
+        triangular t((m/3), m);
+        biscs.push_back(&t);
+      }
+      if(76 <= n <= 150){
+        circular c(m);
+        biscs.push_back(&c);
+      }
+      if(0 <= n <= 75){
+        quadrado q(m);
+        biscs.push_back(&q);
+      }
+    }
 }

@@ -1,21 +1,26 @@
-#include <iostream>
+#include <string>
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <fstream>
 #include <iterator>
+#include <algorithm>
 #include <stdlib.h>
 
 class Biscoito{
 private:
+  float tam;
   float preco;
 public:
+  
   float getpreco(){
     return preco;
   }
   float setpreco(float x){
     preco = x;
   }
-  float getarea(){
-
-  }
+  virtual float getarea(){
+  	}
 };
 
 class quadrado : public Biscoito {
@@ -39,7 +44,7 @@ class circular : public Biscoito {
 
     }
     float getarea(){
-      return 3,14 * (raio * raio);
+      return 3.14 * (raio * raio);
     }
 };
 
@@ -57,40 +62,91 @@ class triangular : public Biscoito {
     }
 };
 
-float alocapreco(Biscoito &b){
-  if( 5 < b.getarea() < 10){
-    b.setpreco(0.50);
+float alocapreco(Biscoito* b){
+  if( 10 < b->getarea() && b->getarea() < 30){
+    b->setpreco(0.5);
   }
-  if( 3 < b.getarea() < 5){
-    b.setpreco(0.35);
+  if( 5 < b->getarea() && b->getarea() < 10){
+    b->setpreco(0.35);
   }
-  if( 1 < b.getarea() < 3){
-    b.setpreco (0.20);
+  if( 0 < b->getarea() && b->getarea()  < 5){
+    b->setpreco (0.2);
   }
+}
+ bool cmp(Biscoito* j, Biscoito* t) {
+		return t->getarea() < j->getarea();
 }
 
 int main(){
-  int x, y, z, n;
-  float m;
-  quadrado q;
-  std::cout << "" << t.getarea() << std::endl;
+  int z, v, contm, contl, conts, k;
+  float m, n, med, lar, sl, p;
+  srand(time(NULL));
+  v = 0;
+  sl = 0;
+  lar = 0;
+  med = 0;
+  contm = 0;
+  contl = 0;
+  conts = 0;
+  std::cout<<"quantos biscoitos terao?"<<std::endl;
+  scanf("%d", &k); 
   std::vector<Biscoito*> biscs;
-  std::vector<Biscoito*>::iterator i;
-  for (i = biscs.begin(); i != 500; i++){
-    srand (time(NULL));
-      m = rand() % 10;
+  for(v = 0; v <= k; v++){
+      m = rand() % 10 + 1;
       n = rand() % 225;
-      if(151 <= n <= 225){
-        triangular t((m/3), m);
-        biscs.push_back(&t);
+	std::cout<< n;
+	std::cout<< std::endl;
+      if(151 <= n && n <= 225){
+	std::cout<<"tri"<<std::endl;
+        biscs.push_back(new triangular(m/3, m));
+	alocapreco(biscs[v]);
       }
-      if(76 <= n <= 150){
-        circular c(m);
-        biscs.push_back(&c);
+      if(76 <= n && n <= 150){
+	std::cout<<"circ"<<std::endl;
+        biscs.push_back(new circular(m/4));
+	alocapreco(biscs[v]);
       }
-      if(0 <= n <= 75){
-        quadrado q(m);
-        biscs.push_back(&q);
+      if(0 <= n && n <= 75){
+	std::cout<<"quad"<<std::endl;
+        biscs.push_back(new quadrado(m/2));
+	alocapreco(biscs[v]);
       }
-    }
+   }
+  std::cout<<"biscoito por ordem de tamanho"<<std::endl;
+  std::sort(biscs.begin(), biscs.end(), cmp);
+  std::vector<Biscoito*>::iterator ix;
+  for (ix = biscs.begin(); ix != biscs.end(); ix++){
+	std::cout<<(*ix)->getarea()<<std::endl;
+	}
+
+/* nao consegui de forma nenhuma fazer o if ler o preco direito, entao vai uma lista do p de cada biscoito para mostrar que a alocacao esta sendo feita certo pelo -*/
+std::vector<Biscoito*>::iterator iz;
+for (iz = biscs.begin(); iz != biscs.end(); iz++){
+	std::cout<<(*iz)->getpreco()<<std::endl;
+	p = (*iz)->getpreco();
+	if(p ==0.2){
+		sl += 0.2;
+		conts++;
+	std::cout<<"biscoito por ordem de tamanho"<<std::endl;
+	
+	} else if(p ==0.35){
+		med += 0.35;
+		contm++;
+	std::cout<<"biscoito por ordem de tamanho"<<std::endl;
+	
+        } else if(p ==0.5){
+		lar += 0.5;
+		contl++;
+	}
+	}
+std::cout<<"biscoitos pequenos:"<<conts<<std::endl;
+  std::cout<<"biscoitos medios:"<<contm<<std::endl;
+  std::cout<<"biscoitos grandes:"<<contl<<std::endl;
+  std::cout<<"arrecadado com biscoitos pequenos"<<std::endl;
+  std::cout<<"$"<<sl<<std::endl;
+  std::cout<<"arrecadado com biscoitos medios"<<std::endl;
+  std::cout<<"$"<<med<<std::endl;
+  std::cout<<"arrecadado com biscoitos grandes"<<std::endl;
+  std::cout<<"$" <<lar<<std::endl;
+  std::cout<<"biscoitos por ordem de tamanho"<<std::endl;
 }

@@ -112,7 +112,7 @@ int main(){
 	alocapreco(biscs[v]);
       }
    }
-  std::cout<<"biscoito por ordem de tamanho"<<std::endl;
+  std::cout<<"biscoito por ordem de tamanho:"<<std::endl;
   std::sort(biscs.begin(), biscs.end(), cmp);
   std::vector<Biscoito*>::iterator ix;
   for (ix = biscs.begin(); ix != biscs.end(); ix++){
@@ -127,12 +127,9 @@ for (iz = biscs.begin(); iz != biscs.end(); iz++){
 	if(p ==0.2){
 		sl += 0.2;
 		conts++;
-	std::cout<<"biscoito por ordem de tamanho"<<std::endl;
-	
 	} else if(p ==0.35){
 		med += 0.35;
 		contm++;
-	std::cout<<"biscoito por ordem de tamanho"<<std::endl;
 	
         } else if(p ==0.5){
 		lar += 0.5;

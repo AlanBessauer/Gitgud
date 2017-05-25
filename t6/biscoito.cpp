@@ -124,10 +124,10 @@ std::vector<Biscoito*>::iterator iz;
 for (iz = biscs.begin(); iz != biscs.end(); iz++){
 	std::cout<<(*iz)->getpreco()<<std::endl;
 	p = (*iz)->getpreco();
-	if(p ==0.2){
+	if(p <=0.24 && p>= 0.15){
 		sl += 0.2;
 		conts++;
-	} else if(p ==0.35){
+	} else if(p <=0.37 && p >=0.26){
 		med += 0.35;
 		contm++;
 	

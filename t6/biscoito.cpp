@@ -119,7 +119,6 @@ int main(){
 	std::cout<<(*ix)->getarea()<<std::endl;
 	}
 
-/* nao consegui de forma nenhuma fazer o if ler o preco direito, entao vai uma lista do p de cada biscoito para mostrar que a alocacao esta sendo feita certo pelo -*/
 std::vector<Biscoito*>::iterator iz;
 for (iz = biscs.begin(); iz != biscs.end(); iz++){
 	std::cout<<(*iz)->getpreco()<<std::endl;

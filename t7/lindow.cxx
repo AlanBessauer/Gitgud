@@ -1,5 +1,5 @@
 
-#include "caraii.h"
+#include "lindow.h"
 
 #include <FL/Fl_Image.H>
 static const unsigned char idata_picture[] =

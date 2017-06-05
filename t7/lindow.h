@@ -1,5 +1,5 @@
-#ifndef caraii_h
-#define caraii_h
+#ifndef lindow_h
+#define lindow_h
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Button.H>
